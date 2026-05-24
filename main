@@ -117,7 +117,7 @@ Part.CFrame = CFrame.new(P0.Position);
 	_BodyPosition, _BodyGyro = Instance.new("BodyPosition", P0), Instance.new("BodyGyro", P0);
 
 	MainAttachment.Position = _newPosition;
-	MainAttachment.Rotation = _newRotation;
+MainAttachment.Orientation = _newRotation
 
 	_BodyGyro.MaxTorque = Vector3.new(math.huge, math.huge, math.huge);
 	_BodyGyro.P = BG_P or 40000;
