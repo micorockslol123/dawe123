@@ -77,11 +77,11 @@ end;
 function shared.GrabModule:RotateAlignment(_newRotation, _Time, _EasingStyle, _EasingDirection)
 	if _newRotation and SelectedAttachment then
 		if _Time and _EasingStyle then
-			local Tween = TweenService:Create(SelectedAttachment, TweenInfo.new(_Time, _EasingStyle, _EasingDirection or Enum.EasingDirection.Out), {Rotation = _newRotation});
+			local Tween = TweenService:Create(SelectedAttachment, TweenInfo.new(_Time, _EasingStyle, _EasingDirection or Enum.EasingDirection.Out), {Orientation = _newRotation});
 			Tween:Play();
 			return Tween;
 		else
-			SelectedAttachment.Rotation = _newRotation;
+SelectedAttachment.Orientation = _newRotation
 		end;
 	end;
 end;
