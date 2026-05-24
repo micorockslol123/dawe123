@@ -98,7 +98,7 @@ function shared.GrabModule:Align(P0, P1, _newPosition, _newRotation, BG_P, BP_P)
 		Part.Size = Vector3.new(0.25, 0.25, 0.25);
 		Part.Transparency = 1;
 		Part.Anchored = true;
-		Part.CFrame = Vector3.new(P0.Position);
+Part.CFrame = CFrame.new(P0.Position);
 		Part.Name = "AttachmentCore";
 		
 		P1 = Part;
