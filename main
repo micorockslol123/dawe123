@@ -36,7 +36,7 @@ function shared.GrabModule:Refresh()
 	if SelectedAttachment then
 		if SelectedAttachment.Parent == "AttachmentCore" then
 			SelectedAttachment.Parent:Destroy();
-			rconsoleprint("Destroyed core!");
+			print("Destroyed core!");
 		else
 			SelectedAttachment:Destroy();
 		end;
@@ -93,7 +93,7 @@ function shared.GrabModule:Align(P0, P1, _newPosition, _newRotation, BG_P, BP_P)
 	local P0 = _GrabbedCHAR:FindFirstChild(P0);
 
 	if P1 == workspace then
-		rconsoleprint("workspace mode enabled!")
+		print("workspace mode enabled!")
 		local Part = Instance.new("Part", workspace.Ignored);
 		Part.Size = Vector3.new(0.25, 0.25, 0.25);
 		Part.Transparency = 1;
