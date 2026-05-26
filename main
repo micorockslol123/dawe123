@@ -145,17 +145,27 @@ MainAttachment.Orientation = _newRotation
 end;
 
 function shared.GrabModule:BreakLimb(Limb)
-	local _GrabbedCHAR = shared.GrabModule:getCarrying();
-	if _GrabbedCHAR ~= nil then
-		if _GrabbedCHAR:FindFirstChild(Limb) then
-			_GrabbedCHAR:FindFirstChild(Limb).Position = Vector3.new(0, -1200, 0);
+	local _GrabbedCHAR = shared.GrabModule:getCarrying()
+
+	if _GrabbedCHAR then
+		local part = _GrabbedCHAR:FindFirstChild(Limb)
+
+		if part then
+			for _, v in ipairs(part:GetDescendants()) do
+				if v:IsA("Motor6D") or v:IsA("Weld") or v:IsA("WeldConstraint") then
+					v:Destroy()
+				end
+			end
+
+			part:BreakJoints()
+			part.Position = Vector3.new(0, -1200, 0)
 		else
-			warn('[⚠️] Limb has already been removed.');
-		end;
+			warn("[⚠️] Limb has already been removed.")
+		end
 	else
-		warn("[⚠️] You are not dragging anyone");
-	end;
-end;
+		warn("[⚠️] You are not dragging anyone")
+	end
+end
 
 function shared.GrabModule:PlayAnimation(ID, SPEED, TIME, SMOOTH, LOOPING, DONTOVERRIDE)
 	if not DONTOVERRIDE then
