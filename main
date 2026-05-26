@@ -166,7 +166,21 @@ function shared.GrabModule:BreakLimb(Limb)
 		warn("[⚠️] You are not dragging anyone")
 	end
 end
+function shared.GrabModule:StopAlignment()
+	local char = self:getCarrying()
+	if not char then return end
 
+	for _, v in ipairs(char:GetDescendants()) do
+		if v:IsA("AlignPosition")
+		or v:IsA("AlignOrientation")
+		or v:IsA("LinearVelocity")
+		or v:IsA("VectorForce")
+		or v:IsA("BodyVelocity")
+		or v:IsA("BodyGyro") then
+			v:Destroy()
+		end
+	end
+end
 function shared.GrabModule:PlayAnimation(ID, SPEED, TIME, SMOOTH, LOOPING, DONTOVERRIDE)
 	if not DONTOVERRIDE then
 		for _, v in next, _LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks() do
