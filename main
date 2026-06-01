@@ -42,7 +42,32 @@ function shared.GrabModule:Refresh()
 		end;
 	end;
 end;
+function shared.GrabModule:Throw(_Distance, _Height, _BodyPart)
+	local grabbedChar = shared.GrabModule:getCarrying()
+	if not grabbedChar then return end
 
+	_BodyPart = "UpperTorso"
+
+	local part = grabbedChar:FindFirstChild(_BodyPart)
+	local hrp = _LocalPlayer.Character and _LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+
+	if not part or not hrp then return end
+
+	shared.GrabModule:Refresh()
+
+	local dir = hrp.CFrame.LookVector * (_Distance or 500)
+	local up = Vector3.new(0, _Height or 500, 0)
+
+	part.AssemblyLinearVelocity = dir + up
+
+	task.delay(0.15, function()
+		local event = ReplicatedStorage:FindFirstChild("MainEvent")
+		if event then
+			event:FireServer("Grabbing", false)
+		end
+	end)
+end
+--[[
 function shared.GrabModule:Throw(_Distance, _Height, _BodyPart)
 	local _GrabbedCHAR = shared.GrabModule:getCarrying();
 	if _GrabbedCHAR ~= nil then
@@ -61,7 +86,7 @@ function shared.GrabModule:Throw(_Distance, _Height, _BodyPart)
 		end);
 	end;
 end;
-
+]]
 function shared.GrabModule:MoveAlignment(_newPosition, _Time, _EasingStyle, _EasingDirection)
 	if _newPosition and SelectedAttachment then
 		if _Time and _EasingStyle then
