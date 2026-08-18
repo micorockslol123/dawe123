@@ -292,7 +292,7 @@ function shared.GrabModule:CreateTool(Table)
 					end;
 					
 					StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, true);
-					Instance.new("StringValue", Tool).Name = "Icxys_Neckgrabs";
+					Instance.new("StringValue", Tool).Name = "Micos_Neckgrabs";
 
 					CreateKeybind(Table.ToolName, Table2.Keybind, Table2.Callback);
 				end;
